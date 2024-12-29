@@ -1,27 +1,24 @@
-const nome = "Rafael Andrade";
-const dataNascimento = "1995-09-07";
-const momentoAtual = new Date();
-const dataNascimentoTipoDate = new Date(dataNascimento);
+document.getElementById('accidentForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-// Calcula o ano do próximo aniversário
-const anoAtual = momentoAtual.getFullYear();
-let proximoAniversario = new Date(
-    anoAtual,
-    dataNascimentoTipoDate.getMonth(),
-    dataNascimentoTipoDate.getDate()
-);
+    const lastAccidentDateInput = document.getElementById('lastAccidentDate').value;
+    const resultDiv = document.getElementById('result');
 
-// Verifica se o aniversário deste ano já passou
-if (momentoAtual > proximoAniversario) {
-    proximoAniversario = new Date(
-        anoAtual + 1,
-        dataNascimentoTipoDate.getMonth(),
-        dataNascimentoTipoDate.getDate()
-    );
-}
+    if (!lastAccidentDateInput) {
+        resultDiv.textContent = 'Por favor, insira uma data válida.';
+        return;
+    }
 
-// Calcula os dias até o próximo aniversário
-const diffEmMs = proximoAniversario - momentoAtual;
-const diasAteProximoAniversario = Math.ceil(diffEmMs / (1000 * 60 * 60 * 24));
+    const lastAccidentDate = new Date(lastAccidentDateInput);
+    const currentDate = new Date();
 
-console.log(`${nome}, seu próximo aniversário é em ${diasAteProximoAniversario} dias.`);
+    if (lastAccidentDate > currentDate) {
+        resultDiv.textContent = 'A data do último acidente não pode ser no futuro.';
+        return;
+    }
+
+    const differenceInTime = currentDate - lastAccidentDate;
+    const differenceInDays = Math.floor(differenceInTime / (1000 * 60 * 60 * 24));
+
+    resultDiv.textContent = `Já se passaram ${differenceInDays} dias sem acidentes.`;
+});
