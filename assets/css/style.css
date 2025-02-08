@@ -1,0 +1,43 @@
+:root {
+    background-color:#080808;
+}
+/* coloca os elementos do header lado a lado */
+header {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* coloca os elementos da navbar lado a lado e retira a estilização de list items */
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+/* colocar margem de 20px entre os itens da lista */
+nav ul li {
+    margin-right: 20px;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.social-icons {
+    display: flex;
+    
+    
+}
+
+.social-icons svg {
+    width: 1.2rem;
+    height: auto;
+    fill: #ffffff;
+    transition: transform 0.2s ease-in-out;
+    margin-right: 15px;
+
+}
+
+.social-icons svg:hover {
+    fill: #0077b5; /* Cor ao passar o mouse (exemplo: azul do LinkedIn) */
+    transform: scale(1.1);
+}
